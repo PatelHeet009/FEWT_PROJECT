@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task List</title>
+
+  <style>
+    .completed 
+    {
+      text-decoration: line-through;
+  }
+
+</style>
+</head>
+
+<body>
+
+  <h2>My Tasks</h2>
+
+  <form onsubmit="addTask(); return false;">
+    <input id="taskInput" placeholder="Write a task">
+</form>
+
+<ul id="taskList"></ul>
+
+<script>
+    function addTask() 
+    {
+      let input = document.getElementById("taskInput");
+      let taskList = document.getElementById("taskList");
+
+      if (input.value == "") 
+      {
+        return;
+    }
+
+    let task = document.createElement("li");
+
+    // task.innerHTML =
+    // "<span>" + input.value + "</span> " +
+    // "<button onclick='complete(this)'>Complete</button>" +
+    // "<button onclick='incomplete(this)'>Incomplete</button>";
+    task.innerHTML = `
+  <span>${input.value}</span>
+
+  <button onclick="complete(this)">
+    Complete
+  </button>
+
+  <button onclick="incomplete(this)">
+    Incomplete
+  </button>
+    `;
+
+    taskList.appendChild(task);
+
+    input.value = "";
+}
+
+function complete(button) 
+{
+  button.parentElement
+  .querySelector("span")
+  .classList.add("completed");
+}
+
+function incomplete(button) 
+{
+  button.parentElement
+  .querySelector("span")
+  .classList.remove("completed");
+}
+</script>
+
+</body>
+</html> 
